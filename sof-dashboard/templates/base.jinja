@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>{%block title%} {%endblock%}</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.22/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+    <script type="module" src="/static/js/main.js"></script>
+    <style>
+        html {
+            background-image: url(/static/img/background.png);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar bg-base-100 shadow-sm">
+        <div class="navbar-start">
+        {%if session%}
+            <div class="dropdown">
+                <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h7" />
+                    </svg>
+                </div>
+                <ul tabindex="-1"
+                    class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                    <li><a href="{{url_for('main.index')}}">Dashboard</a></li>
+                    <li><a href="#">Enlaces Maliciosos</a></li>
+                    <li><a href="{{url_for('repo.index')}}">Fuentes Externas</a></li>
+                </ul>
+            </div>
+        {%endif%}
+        </div>
+        <div class="navbar-center">
+            <a class="btn btn-ghost text-xl">Shadow Of Intent</a>
+        </div>
+        <div class="navbar-end">
+            
+        </div>
+    </div>
+    
+    <!-- Alert Templates -->
+    <template id="error-alert-template">
+        <div id="error-alert" role="alert" class="alert alert-error alert-soft">
+            <span id="alert-message"></span>
+        </div> 
+    </template>
+
+    <template id="warning-alert-template">
+        <div id="warning-alert" role="alert" class="alert alert-warning alert-soft">
+            <span id="alert-message"></span>
+        </div>
+    </template>
+
+    <template id="success-alert-template">
+        <div id="success-alert" role="alert" class="alert alert-success alert-soft">
+            <span id="alert-message"></span>
+        </div>
+    </template>
+
+    <template id="info-alert-template">
+        <div id="info-alert" role="alert" class="alert alert-info alert-soft">
+            <span id="alert-message"></span>
+        </div>
+    </template>
+
+
+    <main class="container mx-auto">
+        <div id="alert-div"></div>
+        {%block content%} {%endblock%}
+    </main>
+    <footer>
+
+    </footer>
+</body>
+<script>
+    function clearAlerts() {
+        const alertDiv = document.getElementById("alert-div");
+        alertDiv.innerHTML = "";
+    }
+</script>
+<script type="module" src="/static/js/main.js"></script>
+</html>

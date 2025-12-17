@@ -1,0 +1,31 @@
+{%extends 'base.jinja'%}
+
+{%block title%} Nuevo Admin {%endblock%}
+
+{%block content%}
+
+<div class="w-full max-w-xs mx-auto">
+    <form action="{{url_for('auth.new_admin')}}" method="post" class="bg-base-200 shadow shadow-blue-500 mx-auto rounded px-8 pt-6 pb-8 mb-4 mt-35">
+        <h1 class="text-2xl text-white text-black font-bold text-center">Usuario Admin</h1>
+        <br>
+        <h2 class="text-white text-center"><strong>Usuario: </strong> Administrator</h2>
+        <div class="mb-6">
+            <br>
+            <label class="block text-white text-sm font-bold mb-2" for="password">
+                Password
+            </label>
+            <input type="password" name="passwd" placeholder="******************" class="input w-full input-sm input-info" />
+        </div>
+        <div class="mb-6">
+            <label class="block text-white text-sm font-bold mb-2" for="password">
+                Repeated Password
+            </label>
+            <input type="password" name="passwd_repeat" placeholder="******************" class="input w-full input-sm input-info" />
+        </div>
+        <div class="flex items-center justify-between">
+            <button type="submit" class="btn btn-block btn-info font-bold">Crear Administrador</button>
+        </div>
+    </form>
+</div>
+
+{%endblock%}
