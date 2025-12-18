@@ -9,7 +9,6 @@ main_bp = Blueprint('main', __name__)
 async def index():
     if 'id' in session:
         return render_template("main/index.jinja")
-    
 
     if await SecurityController.admin_exists():
         return redirect(url_for('auth.login'))

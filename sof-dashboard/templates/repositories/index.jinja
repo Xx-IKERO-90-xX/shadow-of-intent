@@ -4,11 +4,21 @@
 
 {%block content%}
 <script type="module" src="/static/js/repository/main.js"></script>
+
+<div id="alerts-div">
+    
+</div>
+
+<template id="error-alert-template">
+    <div id="error-alert" role="alert" class="alert alert-error alert-soft">
+        <span id="alert-message"></span>
+    </div>
+</template>
+
 <div class="overflow-x-auto mt-40 shadow shadow-blue-500 rounded-box border border-base-content/5 bg-base-100">
     <table class="table">
-        <!-- head -->
         <thead>
-            <tr>
+            <tr> 
                 <th></th>
                 <th>Nombre</th>
                 <th>Url</th>
@@ -38,7 +48,7 @@
                                 d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0" />
                         </svg>
                     </button>
-                    <a type="button" class="btn btn-error btn-sm btn-circle">
+                    <a type="button" href="{{url_for('repo.delete_repository', id=repo.id)}}" class="btn btn-error btn-sm btn-circle">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-x-circle" viewBox="0 0 16 16">
                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
@@ -60,7 +70,8 @@
         </form>
         <h3 class="font-bold text-lg">Agregar Nueva Fuente</h3>
         <br>
-        <form id="add_repository_form" action="{{url_for('repo.add_repository')}}" method="post" class="mt-4 w-full max-w-lg">
+        <form id="add_repository_form" action="{{url_for('repo.add_repository')}}" method="post"
+            class="mt-4 w-full max-w-lg">
             <div class="flex flex-wrap -mx-3 mb-2">
                 <div class="w-full md:w-2/3 px-3 mb-6 md:mb-0">
                     <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="grid-city">
@@ -84,8 +95,9 @@
                     <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="grid-password">
                         Url
                     </label>
-                    <input type="url" name="url" class="input input-info input-sm w-full" required placeholder="https://"
-                        value="https://" pattern="^https?:\/\/([a-zA-Z0-9]([a-zA-Z0-9\-].*[a-zA-Z0-9])?\.)+[a-zA-Z].*$"
+                    <input type="url" name="url" class="input input-info input-sm w-full" required
+                        placeholder="https://" value="https://"
+                        pattern="^https?:\/\/([a-zA-Z0-9]([a-zA-Z0-9\-].*[a-zA-Z0-9])?\.)+[a-zA-Z].*$"
                         title="Tiene que ser una URL válida" />
                 </div>
             </div>
@@ -95,8 +107,9 @@
                     <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="grid-password">
                         Descripción
                     </label>
-                    <textarea style="text-align: left;" name="description" class="textarea textarea-info w-full" placeholder="Descripción de la fuente">
-                    
+                    <textarea style="text-align: left;" name="description" class="textarea textarea-info w-full"
+                        placeholder="Descripción de la fuente">
+
                     </textarea>
                 </div>
             </div>

@@ -1,5 +1,5 @@
-import { createErrorAlert } from "../alerts/alerts.js";
-import { addAlert } from "../main.js";
+import { createErrorAlert } from "/static/js/alerts/alerts.js";
+import { addAlert } from "/static/js/main.js";
 
 let formAddRepo = document.getElementById("add_repository_form");
 
@@ -16,7 +16,8 @@ formAddRepo.addEventListener("submit", (event) => {
     if (type === "txt" && !TXT_REGEX.test(url)) {
         event.preventDefault();
         let message = "La URL no coincide con el tipo 'txt'. Debe terminar en .txt";
-        let alert = addAlert(createErrorAlert(message));
+        let errorAlert = createErrorAlert(message);
+        let alert = addAlert(errorAlert);
         addAlert(alert);
         
         return;
@@ -25,7 +26,8 @@ formAddRepo.addEventListener("submit", (event) => {
     if (type === "json" && !JSON_REGEX.test(url)) {
         event.preventDefault();
         let message = "La URL no coincide con el tipo 'json'. Debe terminar en .json";
-        let alert = addAlert(createErrorAlert(message));
+        let errorAlert = createErrorAlert(message);
+        let alert = addAlert(errorAlert);
         addAlert(alert);
 
         return;

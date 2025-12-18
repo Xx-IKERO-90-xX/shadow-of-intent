@@ -36,13 +36,19 @@ async def add_repository():
             if not re.match(JSON_REGEX, url):
                 return redirect(url_for('repo.index'))
             
-            new_repo = (name, url, description, type)
+            if description is None:
+                description = ""
+            
+            new_repo = Repository(name, url, description, type)
             db.session.add(new_repo)
             db.session.commit()
 
         elif type == 'txt':
             if not re.match(TXT_REGEX, url):
                 return redirect(url_for('repo.index'))
+            
+            if description is None:
+                description = ""
             
             new_repo = Repository(name, url, description, type)
             db.session.add(new_repo)
@@ -54,3 +60,16 @@ async def add_repository():
         return redirect(url_for('repo.index'))
 
     return redirect(url_for('repo.index'))
+
+# Esta ruta maneja la eliminación de un repositorio externo
+@repo_bp.route('/repositories/delete/<int:id>', methods=['GET'])
+async def delete_repository(id):
+    if 'id' in session:
+        repo = Repository.query.get(id)
+        if repo:
+            db.session.delete(repo)
+            db.session.commit()
+        
+        return redirect(url_for('repo.index'))
+    
+    return redirect(url_for('auth.login'))
