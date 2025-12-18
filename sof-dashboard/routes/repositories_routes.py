@@ -16,10 +16,13 @@ repo_bp = Blueprint('repo', __name__)
 async def index():
     if 'id' in session:
         page = request.args.get('page', 1, type=int)
-        pagination = Repository.query.paginate(page=page, per_page=10)
-        repositories = pagination.items
+        repositories = Repository.query.paginate(
+            page=page,
+            per_page=5,
+            error_out=False
+        )
 
-        return render_template("repositories/index.jinja", repositories=repositories, pagination=pagination)
+        return render_template("repositories/index.jinja", repositories=repositories)
     
     return redirect(url_for('auth.login'))
 

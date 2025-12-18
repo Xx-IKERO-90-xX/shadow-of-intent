@@ -51,7 +51,7 @@ async def new_admin():
         else:
             error_msg = "Las contraseñas no coinciden."
             return render_template('/auth/new_admin.jinja', error=error_msg)
-        
+
 # Logout route
 @auth_bp.route('/auth/logout', methods=['GET'])
 async def logout():
