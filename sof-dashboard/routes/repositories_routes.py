@@ -76,3 +76,17 @@ async def delete_repository(id):
         return redirect(url_for('repo.index'))
     
     return redirect(url_for('auth.login'))
+
+# Esta ruta maneja la edición de la descripción de un repositorio externo
+@repo_bp.route('/repositories/edit/description/<int:id>', methods=['POST'])
+async def edit_description(id):
+    if 'id' in session:
+        repo = Repository.query.get(id)
+        if repo:
+            new_description = request.form.get('description')
+            repo.description = new_description
+            db.session.commit()
+        
+        return redirect(url_for('repo.index'))
+    
+    return redirect(url_for('auth.login'))

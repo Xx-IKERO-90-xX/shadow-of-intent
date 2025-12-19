@@ -7,7 +7,7 @@ openEditBtn.addEventListener('click', () => {
     editBtn.classList.remove('off');
     cancelBtn.classList.remove('off');
 
-    const descriptionTextarea = document.getElementById('description-textarea');
+    const descriptionTextarea = document.getElementById('description-text');
     descriptionTextarea.removeAttribute('readonly');
 });
 
@@ -16,6 +16,6 @@ cancelBtn.addEventListener('click', () => {
     editBtn.classList.add('off');
     cancelBtn.classList.add('off');
 
-    const descriptionTextarea = document.getElementById('description-textarea');
+    const descriptionTextarea = document.getElementById('description-text');
     descriptionTextarea.setAttribute('readonly', true);
 });

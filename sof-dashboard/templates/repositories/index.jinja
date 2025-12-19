@@ -74,7 +74,7 @@
                                         <a href="{{repo.url}}" class="link link-info">{{repo.url}}</a>
                                     </label>
                                     <br><br>
-                                    <form method="post">
+                                    <form action="{{url_for('repo.edit_description', id=repo.id)}}" method="post">
                                         <script src="/static/js/repository/edit_description.js"></script>
                                         <label>
                                             <span class="font-bold">Descripción: </span>
@@ -87,7 +87,7 @@
                                                         d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
                                                 </svg>
                                             </button>
-                                            <textarea id="description-text" name="description" class="textarea textarea-info w-full text-left" readonly>
+                                            <textarea style="text-align: left;" id="description-text" name="description" class="textarea textarea-info w-full text-left" readonly>
                                                 {{repo.description}}
                                             </textarea>
                                         </label>
@@ -107,7 +107,7 @@
                                                     d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
                                             </svg>
                                         </button>
-                                        <script src="/static/js/repository/edit_description.js"></script>
+                                        <script type="module" src="/static/js/repository/edit_description.js"></script>
                                     </form>
                                 </div>
                             </div>
