@@ -11,6 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.22/dist/full.min.css" rel="stylesheet" type="text/css" />
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
     <script type="module" src="/static/js/main.js"></script>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
     <style>
         html {
             background-image: url(/static/img/background.png);
@@ -33,7 +34,7 @@
                 <ul tabindex="-1"
                     class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
                     <li><a href="{{url_for('main.index')}}">Dashboard</a></li>
-                    <li><a href="#">Enlaces Maliciosos</a></li>
+                    <li><a href="{{url_for('elinks.index')}}">Enlaces Maliciosos</a></li>
                     <li><a href="{{url_for('repo.index')}}">Fuentes Externas</a></li>
                 </ul>
             </div>
@@ -90,4 +91,5 @@
 <script type="module" src="/static/js/main.js"></script>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
 </html>
