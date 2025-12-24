@@ -22,7 +22,7 @@
 <body>
     <div class="navbar bg-base-100 shadow-sm">
         <div class="navbar-start">
-        {%if session%}
+            {%if session%}
             <div class="dropdown">
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
@@ -38,44 +38,34 @@
                     <li><a href="{{url_for('repo.index')}}">Fuentes Externas</a></li>
                 </ul>
             </div>
-        {%endif%}
+            {%endif%}
         </div>
         <div class="navbar-center">
             <a class="btn btn-ghost text-xl">Shadow Of Intent</a>
         </div>
         <div class="navbar-end">
-            
+
         </div>
     </div>
-    
-    <!-- Alert Templates -->
-    <template id="error-alert-template">
-        <div id="error-alert" role="alert" class="alert alert-error alert-soft">
-            <span id="alert-message"></span>
-        </div> 
-    </template>
-
-    <template id="warning-alert-template">
-        <div id="warning-alert" role="alert" class="alert alert-warning alert-soft">
-            <span id="alert-message"></span>
-        </div>
-    </template>
-
-    <template id="success-alert-template">
-        <div id="success-alert" role="alert" class="alert alert-success alert-soft">
-            <span id="alert-message"></span>
-        </div>
-    </template>
-
-    <template id="info-alert-template">
-        <div id="info-alert" role="alert" class="alert alert-info alert-soft">
-            <span id="alert-message"></span>
-        </div>
-    </template>
-
 
     <main class="container mx-auto">
-        <div id="alert-div"></div>
+        <div id="alert-div">
+            <div id="error-alert" role="alert" class="alert alert-error alert-soft">
+                <span id="alert-message"></span>
+            </div>
+
+            <div id="warning-alert" role="alert" class="alert alert-warning alert-soft">
+                <span id="alert-message"></span>
+            </div>
+
+            <div id="success-alert" role="alert" class="alert alert-success alert-soft">
+                <span id="alert-message"></span>
+            </div>
+
+            <div id="info-alert" role="alert" class="alert alert-info alert-soft">
+                <span id="alert-message"></span>
+            </div>
+        </div>
         {%block content%} {%endblock%}
     </main>
     <footer>
@@ -92,4 +82,5 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+
 </html>

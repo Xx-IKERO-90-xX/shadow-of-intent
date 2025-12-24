@@ -1,6 +1,6 @@
 import os
 import sys
-from flask import request, Flask, render_template, redirect, session, sessions, url_for, Blueprint
+from flask import request, Flask, render_template, redirect, session, sessions, url_for, Blueprint, flash
 import controller.SecurityController as SecurityController
 import controller.EvilLinksController as EvilLinksController
 from models.EvilDomain import EvilDomain
@@ -52,6 +52,7 @@ async def add_evil_link():
 async def delete_evil_link(id):
     if 'id' in session:
         evil_link = EvilDomain.query.get_or_404(id)
+
         try:
             db.session.delete(evil_link)
             db.session.commit()
@@ -66,7 +67,6 @@ async def reload_evil_domains():
     if 'id' in session:
         repositories = Repository.query.all()
         for repo in repositories:
-            print(repo)
             if repo.type == 'json':
                 await EvilLinksController.extract_from_JSON_repository(repo)
 

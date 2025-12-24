@@ -20,6 +20,14 @@
                                 d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466" />
                         </svg>
                     </a>
+                    <a type="button" onclick="modal_add_domain.showModal()" class="btn btn-success btn-xs btn-circle">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-plus-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                            <path
+                                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+                        </svg>
+                    </a>
                 </th>
             </tr>
         </thead>
@@ -45,4 +53,24 @@
     {%endif%}
 </div>
 
+<dialog id="modal_add_domain" class="modal">
+    <div class="modal-box shadow shadow-blue-500">
+        <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+        </form>
+        <h3 class="text-lg font-bold">Nuevo Dominio Malicioso</h3>
+        <hr/>
+        <br>
+        <form action="{{url_for('elinks.add_evil_link')}}" method="post">
+            <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="grid-password">
+                Url
+            </label>
+            <input type="url" name="domain" class="input input-info input-sm w-full" required placeholder="https://"
+                value="https://" pattern="^https?:\/\/([a-zA-Z0-9]([a-zA-Z0-9\-].*[a-zA-Z0-9])?\.)+[a-zA-Z].*$"
+                title="Tiene que ser una URL válida" />
+            <br><br>
+            <button type="submit" class="btn btn-sm btn-block btn-info">Agregar</button>
+        </form>
+    </div>
+</dialog>
 {%endblock%}
