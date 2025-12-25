@@ -3,8 +3,15 @@
 {%block title%} Enlaces Maliciosos {%endblock%}
 
 {%block content%}
+<br><br>
+<div class="navbar rounded-lg shadow shadow-blue-500 bg-base-100 shadow-sm">
+    <form type="post" action="{{url_for('elinks.search')}}" class="mx-auto">
+        <input type="text" name="text" placeholder="Buscar" class="input input-info" />
+        <button type="submit" class="btn btn-info">Buscar</button>
+    </form>
+</div>
 
-<div class="mt-40 shadow shadow-blue-500 overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
+<div class="mt-30 shadow shadow-blue-500 overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
     <table class="table">
         <thead>
             <tr>
@@ -69,7 +76,7 @@
             <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
         </form>
         <h3 class="text-lg font-bold">Nuevo Dominio Malicioso</h3>
-        <hr/>
+        <hr />
         <br>
         <form action="{{url_for('elinks.add_evil_link')}}" method="post">
             <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="grid-password">

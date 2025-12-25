@@ -30,6 +30,29 @@ async def index():
     
     return redirect(url_for('auth.login'))
 
+@elink_bp.route('/evillinks/search', methods=['GET', 'POST'])
+async def search():
+    if 'id' in session:
+        text = request.form.get('text')
+        page = request.args.get('page', 1, type=int)
+        evillinks = EvilDomain.query.filter(
+            EvilDomain.domain.like(f"%{text}%")
+        ).paginate(
+            page=page,
+            per_page=5,
+            error_out=False
+        )
+
+        total_links = evillinks.pages
+
+        return render_template(
+            'evillinks/index.jinja',
+            evillinks=evillinks,
+            total_links=total_links
+        )
+    
+    return redirect(url_for('auth.login'))
+
 # Esta ruta maneja la adición de un nuevo enlace malicioso
 @elink_bp.route('/evillinks/add', methods=['POST'])
 async def add_evil_link():
