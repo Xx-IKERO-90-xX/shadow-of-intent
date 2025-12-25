@@ -40,9 +40,10 @@ async def add_evil_link():
             new_domain = EvilDomain(domain)
             db.session.add(new_domain)
             db.session.commit()
+            flash("Se ha creado la fuente externa de manera exitosa!!", "success")
         except Exception as e:
-            return redirect(url_for('elinks.index'))
-
+            flash("El enlace malicioso ya existe!!", "error")
+        
         return redirect(url_for('elinks.index'))
     
     return redirect(url_for('auth.login'))
@@ -56,9 +57,12 @@ async def delete_evil_link(id):
         try:
             db.session.delete(evil_link)
             db.session.commit()
+
+            flash("Enlace malicioso eliminado!!", "success")
         except Exception as e:
-            return redirect(url_for('elinks.index'))
-    
+            flash("Error en la eliminación del enlace malicioso!!", "error")
+        return redirect(url_for('elinks.index'))
+
     return redirect(url_for('auth.login'))
 
 

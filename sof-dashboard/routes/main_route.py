@@ -12,5 +12,4 @@ async def index():
 
     if await SecurityController.admin_exists():
         return redirect(url_for('auth.login'))
-    else:
-        return redirect(url_for('auth.new_admin'))
+    return redirect(url_for('auth.new_admin'))

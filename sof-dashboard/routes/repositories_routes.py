@@ -1,6 +1,6 @@
 import os
 import sys
-from flask import request, Flask, render_template, redirect, session, sessions, url_for, Blueprint
+from flask import request, Flask, flash, render_template, redirect, session, sessions, url_for, Blueprint
 import controller.SecurityController as SecurityController
 from models.Repository import Repository
 import re
@@ -46,6 +46,8 @@ async def add_repository():
             db.session.add(new_repo)
             db.session.commit()
 
+            flash("Fuente externa agregado!!", "success")
+
         elif type == 'txt':
             if not re.match(TXT_REGEX, url):
                 return redirect(url_for('repo.index'))
@@ -56,13 +58,16 @@ async def add_repository():
             new_repo = Repository(name, url, description, type)
             db.session.add(new_repo)
             db.session.commit()
+
+            flash("Fuente externa agregado!!", "success")
         
         else:
+            flash("No se ha especificado el tipo de fuente, se permite txt y json.", "error")
             return redirect(url_for('repo.index'))
-
+        
         return redirect(url_for('repo.index'))
-
-    return redirect(url_for('repo.index'))
+        
+    return redirect(url_for('auth.login'))
 
 # Esta ruta maneja la eliminación de un repositorio externo
 @repo_bp.route('/repositories/delete/<int:id>', methods=['GET'])

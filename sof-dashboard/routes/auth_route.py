@@ -1,6 +1,6 @@
 import os
 import sys
-from flask import request, Flask, render_template, redirect, session, sessions, url_for, Blueprint
+from flask import request, Flask, flash, render_template, redirect, session, sessions, url_for, Blueprint
 import controller.SecurityController as SecurityController
 from models.User import User
 from extensions import db
@@ -29,8 +29,8 @@ async def login():
 
             return redirect(url_for('main.index'))
         else:
-            error_msg = "Credenciales inválidas. Inténtalo de nuevo."
-            return render_template('/auth/login.jinja', error=error_msg)
+            flash("Login fallido!", "error")
+            return render_template('/auth/login.jinja')
     
 # New admin creation route
 @auth_bp.route('/auth/new_admin', methods=['GET','POST'])

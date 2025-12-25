@@ -22,10 +22,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 app.app_context()
 
-socketio = SocketIO(app, async_mode='eventlet')
+socketio = SocketIO(app)
 
-
-from routes import *
+from routes import main_bp, auth_bp, repo_bp, elink_bp
 
 app.register_blueprint(main_bp)
 app.register_blueprint(auth_bp)
