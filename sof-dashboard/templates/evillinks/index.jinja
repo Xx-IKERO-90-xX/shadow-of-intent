@@ -5,8 +5,12 @@
 {%block content%}
 <br><br>
 <div class="navbar rounded-lg shadow shadow-blue-500 bg-base-100 shadow-sm">
-    <form type="post" action="{{url_for('elinks.search')}}" class="mx-auto">
+    <form method="get" action="{{url_for('elinks.search')}}" class="mx-auto">
+        {%if search == 'None'%}
         <input type="text" name="text" placeholder="Buscar" class="input input-info" />
+        {%else%}
+        <input type="text" value="{{search}}" name="text" placeholder="Buscar" class="input input-info" />
+        {%endif%}
         <button type="submit" class="btn btn-info">Buscar</button>
     </form>
 </div>
@@ -15,7 +19,9 @@
     <table class="table">
         <thead>
             <tr>
-                <th></th>
+                <th>
+                    <span class="font-bold">Total: {{total_links}}</span>
+                </th>
                 <th>Url</th>
                 <th>
                     <a type="button" class="btn btn-xs btn-circle" href="{{url_for('elinks.reload_evil_domains')}}">
@@ -60,6 +66,17 @@
     </table>
 </div>
 
+{%if searching%}
+<div class="join shadow shadow-blue-500 mt-10">
+    {%if evillinks.has_prev%}
+    <a type="button" href="{{url_for('elinks.search', page=evillinks.prev_num, text=search)}}" class="join-item btn">«</a>
+    {%endif%}
+    <button class="join-item btn">Page {{evillinks.page}}</button>
+    {%if evillinks.has_next%}
+    <a type="button" href="{{url_for('elinks.search', page=evillinks.next_num, text=search)}}" class="join-item btn">»</a>
+    {%endif%}
+</div>
+{%else%}
 <div class="join shadow shadow-blue-500 mt-10">
     {%if evillinks.has_prev%}
     <a href="{{url_for('elinks.index', page=evillinks.prev_num)}}" class="join-item btn">«</a>
@@ -69,6 +86,7 @@
     <a href="{{url_for('elinks.index', page=evillinks.next_num)}}" class="join-item btn">»</a>
     {%endif%}
 </div>
+{%endif%}
 
 <dialog id="modal_add_domain" class="modal">
     <div class="modal-box shadow shadow-blue-500">

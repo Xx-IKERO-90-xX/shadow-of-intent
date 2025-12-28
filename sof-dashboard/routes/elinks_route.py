@@ -30,14 +30,18 @@ async def index():
     
     return redirect(url_for('auth.login'))
 
-@elink_bp.route('/evillinks/search', methods=['GET', 'POST'])
+@elink_bp.route('/evillinks/search', methods=['GET'])
 async def search():
     if 'id' in session:
-        text = request.form.get('text')
+        text = request.args.get("text", "")
         page = request.args.get('page', 1, type=int)
-        evillinks = EvilDomain.query.filter(
-            EvilDomain.domain.like(f"%{text}%")
-        ).paginate(
+        
+        if not text:
+            return redirect(url_for('elinks.index'))
+        
+        query = EvilDomain.query.filter(EvilDomain.domain.ilike(f"%{text}%"))
+
+        evillinks = query.paginate(
             page=page,
             per_page=5,
             error_out=False
@@ -48,7 +52,10 @@ async def search():
         return render_template(
             'evillinks/index.jinja',
             evillinks=evillinks,
-            total_links=total_links
+            total_links=total_links,
+            search=text,
+            page=page,
+            searching=True
         )
     
     return redirect(url_for('auth.login'))
