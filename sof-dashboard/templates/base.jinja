@@ -33,7 +33,7 @@
                 </div>
                 <ul tabindex="-1"
                     class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                    <li><a href="{{url_for('main.index')}}">Dashboard</a></li>
+                    <li><a href="{{url_for('main.index')}}">Inicio</a></li>
                     <li><a href="{{url_for('elinks.index')}}">Enlaces Maliciosos</a></li>
                     <li><a href="{{url_for('repo.index')}}">Fuentes Externas</a></li>
                 </ul>
@@ -41,7 +41,7 @@
             {%endif%}
         </div>
         <div class="navbar-center">
-            <a class="btn btn-ghost text-xl">Shadow Of Intent</a>
+            <a href="{{url_for('main.index')}}" class="btn btn-ghost text-xl">Shadow Of Intent</a>
         </div>
         <div class="navbar-end">
 
@@ -55,22 +55,22 @@
         <br><br>
         {%for category, message in messages%}
             {%if category == 'error'%}
-            <div id="error-alert" role="alert" class="alert alert-error alert-soft">
+            <div id="error-alert" role="alert" class="alert alert-error alert-soft m-2">
                 <span id="alert-message">{{message}}</span>
             </div>
             {%endif%}
             {%if category == "warning"%}
-            <div id="warning-alert" role="alert" class="alert alert-warning alert-soft">
+            <div id="warning-alert" role="alert" class="alert alert-warning alert-soft m-2">
                 <span id="alert-message">{{message}}</span>
             </div>
             {%endif%}
             {%if category == "success"%}
-            <div id="success-alert" role="alert" class="alert alert-success alert-soft">
+            <div id="success-alert" role="alert" class="alert alert-success alert-soft m-2">
                 <span id="alert-message">{{message}}</span>
             </div>
             {%endif%}
             {%if category == "info"%}
-            <div id="info-alert" role="alert" class="alert alert-info alert-soft">
+            <div id="info-alert" role="alert" class="alert alert-info alert-soft m-2">
                 <span id="alert-message">{{message}}</span>
             </div>
             {%endif%}

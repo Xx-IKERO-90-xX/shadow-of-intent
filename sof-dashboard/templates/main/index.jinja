@@ -2,8 +2,19 @@
 
 {%block title%} Inicio {%endblock%}
 
-{%block content%} 
+{%block content%}
 
+<div class="stats stats-vertical lg:stats-horizontal shadow w-full text-center mt-20">
+    <div class="stat">
+        <div class="stat-title">Enlaces Maliciosos</div>
+        <div class="stat-value">{{total_domain}}</div>
+    </div>
+
+    <div class="stat">
+        <div class="stat-title">Fuentes Externas</div>
+        <div class="stat-value">{{total_repositories}}</div>
+    </div>
+</div>
 
 
 {%endblock%}
