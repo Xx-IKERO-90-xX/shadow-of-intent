@@ -1,0 +1,8 @@
+services:
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ikero9090
+    volumes:
+      - ./data:/var/lib/mysql
