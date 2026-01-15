@@ -1,6 +1,6 @@
 {
     "mysql": {
-        "host": "100.116.29.49",
+        "host": "127.0.0.1",
         "user": "root",
         "passwd": "ikero9090",
         "db": "SHADOWOFINTENT",

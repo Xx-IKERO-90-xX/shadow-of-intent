@@ -25,11 +25,14 @@ app.app_context()
 socketio = SocketIO(app)
 
 from routes import main_bp, auth_bp, repo_bp, elink_bp
+from api import elinks_api
 
 app.register_blueprint(main_bp)
 app.register_blueprint(auth_bp)
 app.register_blueprint(repo_bp)
 app.register_blueprint(elink_bp)
+app.register_blueprint(elinks_api)
+
 
 if __name__ == "__main__":
     with app.app_context():

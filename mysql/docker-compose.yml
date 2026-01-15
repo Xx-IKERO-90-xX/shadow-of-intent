@@ -4,5 +4,5 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ikero9090
-    volumes:
-      - ./data:/var/lib/mysql
+    ports:
+      - "3306:3306"
